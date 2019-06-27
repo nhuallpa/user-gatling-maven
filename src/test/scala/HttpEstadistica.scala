@@ -12,13 +12,13 @@ class HttpEstadistica extends Simulation {
 
   val theHttpProtocolBuilder = http
     .baseURL("https://person-nhuallpa.herokuapp.com")
-
+  
   val theScenarioBuilder = scenario("Estadisticas de personas")
     .exec(
       http("Estadisticas de personas").get("/estadisticas")
     )
 
   setUp(
-    theScenarioBuilder.inject(constantUsersPerSec(300).during(10 seconds))
+    theScenarioBuilder.inject(constantUsersPerSec(1200).during(10 seconds))
   ).protocols(theHttpProtocolBuilder)
 }
