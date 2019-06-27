@@ -11,7 +11,7 @@ import scala.concurrent.duration._
 class HttpEstadistica extends Simulation {
 
   val theHttpProtocolBuilder = http
-    .baseURL("http://localhost:8080")
+    .baseURL("https://person-nhuallpa.herokuapp.com")
 
   val theScenarioBuilder = scenario("Estadisticas de personas")
     .exec(
@@ -19,6 +19,6 @@ class HttpEstadistica extends Simulation {
     )
 
   setUp(
-    theScenarioBuilder.inject(rampUsers(500).over(60 seconds))
+    theScenarioBuilder.inject(constantUsersPerSec(300).during(10 seconds))
   ).protocols(theHttpProtocolBuilder)
 }
